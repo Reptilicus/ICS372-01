@@ -43,6 +43,6 @@ public class DesiredTempSetButton extends GUIButton implements EventHandler<Acti
     public void handle(ActionEvent event) {
         RefrigeratorContext.instance().handleEvent(DesiredTempSetEvent.instance());
         
-        //testing the git with this comment
+        //testing the git with this comment to see if commits are working
     }
 }
