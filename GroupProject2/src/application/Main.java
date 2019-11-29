@@ -1,26 +1,32 @@
 package application;
-	
+
+import display.GUIDisplay;
+import display.RefrigeratorDisplay;
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import states.RefrigeratorContext;
+import timer.Clock;
 
-
-public class Main extends Application {
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
+/**
+ * moving our Main to the application folder
+ * @author armando
+ *
+ */
+public class Main {
+    public static void main(String[] args) {
+        Clock.instance();
+        new Thread() {
+            @Override
+            public void run() {
+                Application.launch(GUIDisplay.class, null);
+            }
+        }.start();
+        try {
+            while (GUIDisplay.getInstance() == null) {
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException ie) {
+        }
+        RefrigeratorDisplay display = GUIDisplay.getInstance();
+        RefrigeratorContext.instance().setDisplay(display);
+    } 
 }
