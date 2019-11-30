@@ -40,7 +40,7 @@ import states.RefrigeratorContext;
 
 /**
  * GUI to implement the RefrigeratorDisplay interface Testing for commit
- * purposes
+ * purposes 
  */
 public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	private GUIButton doorCloser;
