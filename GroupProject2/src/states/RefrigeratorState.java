@@ -1,10 +1,6 @@
 package states;
 
-import events.OnRequestEvent;
-import events.DoorCloseEvent;
-import events.DoorOpenEvent;
-import events.OffRequestEvent;
-import events.TimerTickedEvent;
+import events.*;
 
 
 /**
@@ -74,6 +70,20 @@ public abstract class RefrigeratorState {
      * Process clock tick Generates the timer runs out event
      */
     public void handleEvent(TimerTickedEvent event) {
+
+    }
+    
+    /**
+     * Process the event where the refigerator 
+     */
+    public void handleEvent(Temp3AboveEvent event) {
+
+    }
+    
+    /**
+     * Process the event where the refigerator 
+     */
+    public void handleEvent(Temp3BelowEvent event) {
 
     }
 

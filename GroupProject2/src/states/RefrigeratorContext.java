@@ -1,12 +1,7 @@
 package states;
 
 import display.RefrigeratorDisplay;
-import events.OnRequestEvent;
-import events.DoorCloseEvent;
-import events.DoorOpenEvent;
-import events.OffRequestEvent;
-import events.DesiredTempSetEvent;
-import events.OutsideTempSetEvent;
+import events.*;
 import timer.Thermometer;
 
 /**
@@ -105,15 +100,17 @@ public class RefrigeratorContext {
     ///??may be refactored or deleted
     public void decrementFridgeTemp() {
     	thermometer.decrementFridgeTemp();
+    	display.showFridgeTemp(getFridgeTemp());
     }
     
     ///??may be refactored or deleted
     public void incrementFridgeTemp() {
     	thermometer.incrementFridgeTemp();
+    	display.showFridgeTemp(getFridgeTemp());
     }
     
     /**
-     * Called from the states to change the current state
+     * Changes the state that the refrigerator is in
      * 
      * @param nextState
      *            the next state
@@ -167,6 +164,22 @@ public class RefrigeratorContext {
     	//to do
        // currentState.handleEvent(event);
     }
+    
+    /**
+     * process temp below 3 event
+     */
+    public void handleEvent(Temp3AboveEvent event) {
+    	currentState.handleEvent(event);
+    }
+    
+    /**
+     * Process temp below 3 event
+     */
+     public void handleEvent(Temp3BelowEvent event) {
+    	 currentState.handleEvent(event);
+     }
+    
+    
     
     /**
      * This invokes the right method of the display. This helps protect the

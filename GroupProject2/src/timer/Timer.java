@@ -3,7 +3,8 @@ package timer;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import events.TimerTickedEvent;
+import events.*;
+import states.RefrigeratorContext;
 
 /**
  *
@@ -81,6 +82,18 @@ public class Timer implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent arg0) {
     		timeValue++;
             client.handleEvent(new TimerTickedEvent(timeValue));
+            
+            //check to see if the fridge temp is above the desired temp
+            if(RefrigeratorContext.instance().getFridgeTemp() >= RefrigeratorContext.instance().getDesiredTemp() + 3) {
+            	RefrigeratorContext.instance().handleEvent(Temp3AboveEvent.instance());
+            }
+            
+          //check to see if the fridge temp is above the desired temp
+            if(RefrigeratorContext.instance().getFridgeTemp() <= RefrigeratorContext.instance().getDesiredTemp() - 3) {
+            	RefrigeratorContext.instance().handleEvent(Temp3BelowEvent.instance());
+            }
+            
             System.out.println(timeValue);
+           
     }
 }

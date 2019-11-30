@@ -1,6 +1,8 @@
 package states;
 
 import events.OnRequestEvent;
+import events.Temp3AboveEvent;
+import events.Temp3BelowEvent;
 import events.OffRequestEvent;
 import events.DoorOpenEvent;
 import events.DoorCloseEvent;
@@ -91,6 +93,22 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
     public void handleEvent(TimerTickedEvent event) {
 
     }
+    
+    /**
+     * process the 3 degreess above event
+     */
+    @Override 
+    public void handleEvent(Temp3AboveEvent event) {
+    	
+    }
+    
+    /**
+     * process the 3 degrees below event
+     */
+    @Override
+    public void handleEvent(Temp3BelowEvent event) {
+    	
+    }
 
     /**
      * Initializes the state Adds itself as a listener to managers Updates the
@@ -104,6 +122,8 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
         RefrigeratorContext.instance().showLightOn();
         RefrigeratorContext.instance().showPowerOff();
     }
+    
+    
 
     @Override
     public void leave() {

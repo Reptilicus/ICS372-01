@@ -1,10 +1,6 @@
 package states;
 
-import events.OnRequestEvent;
-import events.OffRequestEvent;
-import events.DoorOpenEvent;
-import events.DoorCloseEvent;
-import events.TimerTickedEvent;
+import events.*;
 import timer.Notifiable;
 import timer.Timer;
 
@@ -29,7 +25,8 @@ import timer.Timer;
  */
 
 /**
- * The state where the fridge is on and cooling.
+ * The state where the fridge is on and cooling. THis is the state that it is in 
+ * when the refrigerator is first turned on
  *
  */
 public class OnCoolingState extends RefrigeratorState implements Notifiable {
@@ -92,17 +89,32 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
      */
     @Override
     public void handleEvent(TimerTickedEvent event) {
-        if(RefrigeratorContext.instance().getFridgeTemp() > RefrigeratorContext.instance().getDesiredTemp()) {
-        	RefrigeratorContext.instance().decrementFridgeTemp();
-        	if(timer.getTimeValue() % 10 == 0) {
-        		RefrigeratorContext.instance().incrementFridgeTemp();
-        	}
-            RefrigeratorContext.instance().showFridgeTemp(RefrigeratorContext.instance().getFridgeTemp());
-        } else {
-        	RefrigeratorContext.instance().changeState(OnNotCoolingState.instance());
-        }
+    	
+    	//decrement the temp by 3 degrees every second
+    	RefrigeratorContext.instance().decrementFridgeTemp();
+    	RefrigeratorContext.instance().decrementFridgeTemp();
+    	RefrigeratorContext.instance().decrementFridgeTemp();
+    	
         
     }
+    
+    /**
+     * process the 3 degreess above event
+     */
+    @Override 
+    public void handleEvent(Temp3AboveEvent event) {
+    	
+    }
+    
+    /**
+     * process the 3 degrees below event
+     */
+    @Override
+    public void handleEvent(Temp3BelowEvent event) {
+    	RefrigeratorContext.instance().changeState(OnNotCoolingState.instance());
+    }
+    
+    
 
     /**
      * Initializes the state Adds itself as a listener to managers Updates the

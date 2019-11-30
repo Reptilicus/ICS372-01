@@ -1,6 +1,8 @@
 package states;
 
 import events.OnRequestEvent;
+import events.Temp3AboveEvent;
+import events.Temp3BelowEvent;
 import events.OffRequestEvent;
 import events.DoorOpenEvent;
 import events.TimerTickedEvent;
@@ -60,7 +62,7 @@ public class OffState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process off request
+     * Process off request, this does nothing as the refrigerator is off
      */
     @Override
     public void handleEvent(OffRequestEvent event) {
@@ -80,6 +82,22 @@ public class OffState extends RefrigeratorState implements Notifiable {
      */
     @Override
     public void handleEvent(TimerTickedEvent event) {
+    	
+    }
+    
+    /**
+     * process the 3 degreess above event
+     */
+    @Override 
+    public void handleEvent(Temp3AboveEvent event) {
+    	
+    }
+    
+    /**
+     * process the 3 degrees below event
+     */
+    @Override
+    public void handleEvent(Temp3BelowEvent event) {
     	
     }
 
