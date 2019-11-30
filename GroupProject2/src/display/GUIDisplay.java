@@ -39,8 +39,7 @@ import javafx.stage.WindowEvent;
 import states.RefrigeratorContext;
 
 /**
- * GUI to implement the RefrigeratorDisplay interface Testing for commit
- * purposes 
+ * GUI to implement the RefrigeratorDisplay interface.
  */
 public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	private GUIButton doorCloser;
