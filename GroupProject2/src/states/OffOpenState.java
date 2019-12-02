@@ -1,43 +1,19 @@
 package states;
 
-import events.OnRequestEvent;
-import events.Temp3AboveEvent;
-import events.Temp3BelowEvent;
-import events.OffRequestEvent;
-import events.DoorOpenEvent;
-import events.DoorCloseEvent;
-import events.TimerTickedEvent;
+import events.*;
 import timer.Notifiable;
 
-/**
- * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
- 
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
- */
 
 /**
- * The state where the Fridge is off and the door is open(so the light will be on).
+ * The state where the Fridge is off and the door is open. Whenever the door is open
+ * it turns the light on regardless if it is on or off.
  *
  */
 public class OffOpenState extends RefrigeratorState implements Notifiable {
     private static OffOpenState instance;
 
     /**
-     * Private for the singleton pattern
+     * Private constructor for the singleton pattern
      */
     private OffOpenState() {
     }
@@ -55,15 +31,16 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * Process on button request
+     * Process on button request, This does nothing as door is already
+     * opened
      */
     @Override
     public void handleEvent(OnRequestEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
 
     /**
-     * Process off button request
+     * Process off button request, This does nothing as refridgerator is already off
      */
     @Override
     public void handleEvent(OffRequestEvent event) {
@@ -71,15 +48,15 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process door open request
+     * Process door open request, this does nothing as the refridgerator's door is already open
      */
     @Override
     public void handleEvent(DoorOpenEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
     
     /**
-     * Process door close request
+     * Process door close request, Changes the state to OffState
      */
     @Override
     public void handleEvent(DoorCloseEvent event) {
@@ -87,15 +64,16 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process clock tick event
+     * Process clock tick event, This does nothing refridgerator is off
      */
     @Override
     public void handleEvent(TimerTickedEvent event) {
+    	System.out.println("This event does not trigger any changes");
 
     }
     
     /**
-     * process the 3 degreess above event
+     * process the 3 degreess above event, This does nothing as the refridgerator is off
      */
     @Override 
     public void handleEvent(Temp3AboveEvent event) {
@@ -103,7 +81,7 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * process the 3 degrees below event
+     * process the 3 degrees below event, This does nothing as the refridgerator is off
      */
     @Override
     public void handleEvent(Temp3BelowEvent event) {
@@ -112,19 +90,24 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
 
     /**
      * Initializes the state Adds itself as a listener to managers Updates the
-     * displays
+     * displays. In this state the refridgerator is not cooling, the door is open, the light
+     * is on and the power is off. 
      * 
      */
     @Override
     public void enter() {
+    	
+    	//update the GUI with correct values
         RefrigeratorContext.instance().showNotCooling();
         RefrigeratorContext.instance().showDoorOpened();
         RefrigeratorContext.instance().showLightOn();
         RefrigeratorContext.instance().showPowerOff();
     }
     
-    
-
+    /**
+     * Handles any clean up needed for this state, This method may not be needed in our implementation
+     * may look into deleting, as none of the states need to do any cleanup.
+     */
     @Override
     public void leave() {
     }

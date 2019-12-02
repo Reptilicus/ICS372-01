@@ -9,27 +9,8 @@ import events.TimerTickedEvent;
 import timer.Notifiable;
 
 /**
- * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
- 
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
- */
-
-/**
  * The state where the fridge is off and the door is closed.
+ * this is the state that the refrudgerator starts in
  *
  */
 public class OffState extends RefrigeratorState implements Notifiable {
@@ -42,7 +23,7 @@ public class OffState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * For singleton
+     * For singleton pattern, returns the only instance of this class
      * 
      * @return the object
      */
@@ -54,23 +35,26 @@ public class OffState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * Process on request
+     * Process on request, changes the state to the onCoolingState when 
+     * this event occurs.
      */
     @Override
     public void handleEvent(OnRequestEvent event) {
+    	
     	RefrigeratorContext.instance().changeState(OnCoolingState.instance());
     }
 
     /**
-     * Process off request, this does nothing as the refrigerator is off
+     * Process off request, this does nothing as the refrigerator is off, displays to
+     * console for debugging purposes
      */
     @Override
     public void handleEvent(OffRequestEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
 
     /**
-     * Process door open request
+     * Process door open request, changes the state to the OffOpenState.
      */
     @Override
     public void handleEvent(DoorOpenEvent event) {
@@ -78,27 +62,28 @@ public class OffState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process clock tick event
+     * Process clock tick event, This does nothing to our state as refrigerator is off, 
+     * displays message to console for debugging purposes
      */
     @Override
     public void handleEvent(TimerTickedEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
     
     /**
-     * process the 3 degreess above event
+     * process the 3 degreess above event, This does nothing
      */
     @Override 
     public void handleEvent(Temp3AboveEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
     
     /**
-     * process the 3 degrees below event
+     * process the 3 degrees below event, This does nothing
      */
     @Override
     public void handleEvent(Temp3BelowEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
 
     /**

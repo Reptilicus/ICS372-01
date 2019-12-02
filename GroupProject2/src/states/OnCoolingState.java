@@ -4,29 +4,10 @@ import events.*;
 import timer.Notifiable;
 import timer.Timer;
 
-/**
- * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
- 
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
- */
 
 /**
- * The state where the fridge is on and cooling. THis is the state that it is in 
- * when the refrigerator is first turned on
+ * The state where the fridge is on and cooling. This is the state that it is in 
+ * when the refrigerator is first turned on (the on button is pressed) 
  *
  */
 public class OnCoolingState extends RefrigeratorState implements Notifiable {
@@ -53,15 +34,15 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process On button request
+     * Process On button request, Does nothing refrigerator is already on
      */
     @Override
     public void handleEvent(OnRequestEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
     
     /**
-     * Process Off button request
+     * Process Off button request, Changes the state to Offstate
      */
     @Override
     public void handleEvent(OffRequestEvent event) {
@@ -69,7 +50,7 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process door open request
+     * Process door open request, Changes state to onCoolingOpenState
      */
     @Override
     public void handleEvent(DoorOpenEvent event) {
@@ -77,15 +58,16 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * Process door close request
+     * Process door close request, Does nothing door is already closed
      */
     @Override
     public void handleEvent(DoorCloseEvent event) {
-    	
+    	System.out.println("This event does not trigger any changes");
     }
 
     /**
-     * Process clock tick event
+     * Process clock tick event, decreases the temp by 3 degress each second,
+     * this is the "normal" cooling for the refridgerator
      */
     @Override
     public void handleEvent(TimerTickedEvent event) {
@@ -99,7 +81,7 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * process the 3 degreess above event
+     * process the 3 degreess above event, does nothing as it is cooling
      */
     @Override 
     public void handleEvent(Temp3AboveEvent event) {
@@ -107,7 +89,7 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * process the 3 degrees below event
+     * process the 3 degrees below event, changes the state to OnNotCooling
      */
     @Override
     public void handleEvent(Temp3BelowEvent event) {
