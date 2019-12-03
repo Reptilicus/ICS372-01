@@ -12,6 +12,8 @@ import timer.Timer;
  */
 public class OnCoolingState extends RefrigeratorState implements Notifiable {
     private static OnCoolingState instance;
+    
+    //is this nessasary????? COME BACK TO THE CODE AND DECIDE IF THIS IS NESSESARY
     private Timer timer;
     
     /**
@@ -22,7 +24,7 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * For singleton
+     * For singleton, retrives the only instance of this object
      * 
      * @return the object
      */
@@ -99,12 +101,14 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
     
 
     /**
-     * Initializes the state Adds itself as a listener to managers Updates the
-     * displays
+     * Initializes the state by updating the GUI with the proper values, In this state the refrigerator
+     * is cooling, the power is on, the door is closed, Along with the light being off.
      * 
      */
     @Override
     public void enter() {
+    	
+    	//update the GUI and create a new Timer object
     	timer = new Timer(this, 0);
         RefrigeratorContext.instance().showCooling();
         RefrigeratorContext.instance().showPowerOn();
@@ -116,6 +120,8 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 
     @Override
     public void leave() {
+    	
+    	//THIS BLOCK MAY NOT BE NESSASARY LOOK AT THE POTENTIAL TO REMOVE.
     	timer.stop();
     	timer = null;
     }

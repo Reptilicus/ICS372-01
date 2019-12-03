@@ -107,6 +107,8 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
     /**
      * Handles any clean up needed for this state, This method may not be needed in our implementation
      * may look into deleting, as none of the states need to do any cleanup.
+     * 
+     * THIS METHOD MAY NEED TO BE DELETED AS IT APPEARS TO DO NOTHING
      */
     @Override
     public void leave() {

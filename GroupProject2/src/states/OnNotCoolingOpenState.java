@@ -1,32 +1,8 @@
 package states;
 
-import events.OnRequestEvent;
-import events.OffRequestEvent;
-import events.DoorOpenEvent;
-import events.DoorCloseEvent;
-import events.TimerTickedEvent;
+import events.*;
 import timer.Notifiable;
 import timer.Timer;
-
-/**
- * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
- 
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
- */
 
 /**
  * The State where the fridge is not cooling and the door is open.
@@ -56,7 +32,7 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
     }
 
     /**
-     * Process On button request
+     * Process On button request, This does nothing because the refridgerator is already on
      */
     @Override
     public void handleEvent(OnRequestEvent event) {
@@ -64,7 +40,7 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
     }
     
     /**
-     * Process Off button request
+     * Process Off button request, changes the state to OffOpenState
      */
     @Override
     public void handleEvent(OffRequestEvent event) {
@@ -72,7 +48,7 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
     }
 
     /**
-     * Process door open request
+     * Process door open request, the door is already open this does nothing
      */
     @Override
     public void handleEvent(DoorOpenEvent event) {
@@ -80,7 +56,7 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
     }
     
     /**
-     * Process door close request
+     * Process door close request, changes the state to OnNotCoolingState 
      */
     @Override
     public void handleEvent(DoorCloseEvent event) {
@@ -88,28 +64,22 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
     }
 
     /**
-     * Process clock tick event
+     * Process clock tick event, because the refridgerator's door is open and it is not 
+     * cooling this means that the fridge temp will rise faster every second, in our case
+     * we are increasing the fridge temp every second
      */
     @Override
     public void handleEvent(TimerTickedEvent event) {
-    	if(RefrigeratorContext.instance().getFridgeTemp() > RefrigeratorContext.instance().getDesiredTemp() + 3) {
-        	RefrigeratorContext.instance().changeState(OnCoolingOpenState.instance());
-        }
-    	else {
-    			if(RefrigeratorContext.instance().getOutsideTemp() < RefrigeratorContext.instance().getDesiredTemp()) {
-    				RefrigeratorContext.instance().decrementFridgeTemp();
-    				RefrigeratorContext.instance().decrementFridgeTemp();
-    				RefrigeratorContext.instance().decrementFridgeTemp();
-    			}
-            	RefrigeratorContext.instance().incrementFridgeTemp();
-            	RefrigeratorContext.instance().incrementFridgeTemp();
-                RefrigeratorContext.instance().showFridgeTemp(RefrigeratorContext.instance().getFridgeTemp());
-        } 
+    	
+    	//increase the fridgetemp by 3 degrees every second.
+    	RefrigeratorContext.instance().incrementFridgeTemp();
+    	RefrigeratorContext.instance().incrementFridgeTemp();
+    	RefrigeratorContext.instance().incrementFridgeTemp();
     }
 
     /**
-     * Initializes the state Adds itself as a listener to managers Updates the
-     * displays
+     * Initializes the state, displays the GUI with the proper values, In this state the refrigerator is not cooling
+     * the power is on, the door is opened and the light is on
      * 
      */
     @Override
@@ -125,6 +95,8 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
 
     @Override
     public void leave() {
+    	
+    	//CHECK TO SEE IF THIS IS EVEN NESSASARY, MAY NEED TO DELETE IF ITS UNUSED CODE TO AVOID LOSING POINTS
     	timer.stop();
     	timer = null;
     }

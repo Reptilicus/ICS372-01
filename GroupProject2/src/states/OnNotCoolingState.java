@@ -1,32 +1,8 @@
 package states;
 
-import events.OnRequestEvent;
-import events.OffRequestEvent;
-import events.DoorOpenEvent;
-import events.DoorCloseEvent;
-import events.TimerTickedEvent;
+import events.*;
 import timer.Notifiable;
 import timer.Timer;
-
-/**
- * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
- 
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
- */
 
 /**
  * The State where the fridge is on and not cooling.
@@ -56,7 +32,7 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process On button request
+     * Process On button request, Does nothing as the refridgerator is already on
      */
     @Override
     public void handleEvent(OnRequestEvent event) {
@@ -64,7 +40,7 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * Process Off button request
+     * Process Off button request, changes thes state to OffState
      */
     @Override
     public void handleEvent(OffRequestEvent event) {
@@ -72,7 +48,7 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process door open request
+     * Process door open request, changes the state to OnNotCoolingOpenState
      */
     @Override
     public void handleEvent(DoorOpenEvent event) {
@@ -80,7 +56,7 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
     }
     
     /**
-     * Process door close request
+     * Process door close request, does nothing as the door is already closed
      */
     @Override
     public void handleEvent(DoorCloseEvent event) {
@@ -88,21 +64,14 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
     }
 
     /**
-     * Process clock tick event
+     * Process clock tick event, while the refridgerator is not on the temp will increase
+     * by 1 degree every second.
      */
     @Override
     public void handleEvent(TimerTickedEvent event) {
-    	if(RefrigeratorContext.instance().getFridgeTemp() > RefrigeratorContext.instance().getDesiredTemp() + 3) {
-        	RefrigeratorContext.instance().changeState(OnCoolingState.instance());
-        }
-    	else {
-    		if(RefrigeratorContext.instance().getOutsideTemp() < RefrigeratorContext.instance().getDesiredTemp()) {
-				RefrigeratorContext.instance().decrementFridgeTemp();
-				RefrigeratorContext.instance().decrementFridgeTemp();
-			}
-            RefrigeratorContext.instance().incrementFridgeTemp();
-            RefrigeratorContext.instance().showFridgeTemp(RefrigeratorContext.instance().getFridgeTemp());
-        } 
+    	
+    	//increase the fridge temp by 1 degree every second
+    	RefrigeratorContext.instance().incrementFridgeTemp();
     }
 
     /**

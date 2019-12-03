@@ -19,11 +19,14 @@ public abstract class RefrigeratorState {
     /**
      * Performs any necessary clean up while leaving the state, this method may not be nessesary
      * looking into mabye deleting method as state transitions do not need cleanup
+     * 
+     * 
+     * THIS MAY NOT BE NESSESARY
      */
     public abstract void leave();
 
     /**
-     * Specifies the actions to be taken when the On button is pressed.
+     * Specifies the actions to be taken when the On button is pressed. 
      */
     public void handleEvent(OnRequestEvent event) {
 

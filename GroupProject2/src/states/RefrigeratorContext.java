@@ -5,26 +5,6 @@ import events.*;
 import timer.Thermometer;
 
 /**
- * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
- 
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
- */
-
-/**
  * The context is an observer for the clock and stores the context info for
  * states
  *
@@ -58,10 +38,9 @@ public class RefrigeratorContext {
     }
 
     /**
-     * The display could change. So we have to get its reference.
+     * Our Display is able to change, setter allows to change the display object easily
      * 
-     * @param display
-     *            The current display object
+     * @param display The current display object
      */
     public void setDisplay(RefrigeratorDisplay display) {
         this.display = display;
@@ -112,8 +91,7 @@ public class RefrigeratorContext {
     /**
      * Changes the state that the refrigerator is in
      * 
-     * @param nextState
-     *            the next state
+     * @param nextStat the state that is to be changed to
      */
     public void changeState(RefrigeratorState nextState) {
         currentState.leave();
