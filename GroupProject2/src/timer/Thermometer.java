@@ -1,12 +1,8 @@
 package timer;
 
 /**
- * The timer allows a certain time period to be set when created. It sends
- * signals back to its creator every second and a timer runs out message when
- * the time period has elapsed.
- *
- * @author Brahma Dathan
- *
+ * The thermometer class stores the different temperatures that are 
+ * relevant to the refrigerator's operation
  */
 public class Thermometer {
 	private int desiredTemp;

@@ -1,16 +1,11 @@
 package states;
 
-import events.OnRequestEvent;
-import events.Temp3AboveEvent;
-import events.Temp3BelowEvent;
-import events.OffRequestEvent;
-import events.DoorOpenEvent;
-import events.TimerTickedEvent;
+import events.*;
 import timer.Notifiable;
 
 /**
  * The state where the fridge is off and the door is closed.
- * this is the state that the refrudgerator starts in
+ * this is the state that the refrigerator starts in
  *
  */
 public class OffState extends RefrigeratorState implements Notifiable {

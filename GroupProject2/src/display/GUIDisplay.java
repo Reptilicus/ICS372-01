@@ -8,7 +8,6 @@ import buttons.OffButton;
 import buttons.OnButton;
 import buttons.OutsideTempSetButton;
 
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -31,7 +30,6 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	private GUIButton outsideTempSet;
 	private GUIButton desiredTempSet;
 
-
 	private Text doorStatus = new Text("Door Closed");
 	private Text coolingStatus = new Text("Not cooling");
 	private Text outsideTempValue = new Text("Outside Temp");
@@ -40,7 +38,6 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	private Text fridgeTemp = new Text("Fridge Temp");
 	private TextField outsideTempField = new TextField();
 	private TextField desiredTempField = new TextField();
-
 	
 	private static RefrigeratorDisplay display;
 	private RefrigeratorContext refrigeratorContext;
@@ -82,7 +79,6 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 		pane.add(outsideTempSet, 2, 3);		
 		pane.add(desiredTempField, 4, 3);
 		pane.add(desiredTempSet, 6, 3);
-
 
 		showDoorClosed();
 		showLightOff();

@@ -92,13 +92,7 @@ public class Timer implements PropertyChangeListener {
             if(RefrigeratorContext.instance().getFridgeTemp() <= RefrigeratorContext.instance().getDesiredTemp() - 3) {
             	RefrigeratorContext.instance().handleEvent(Temp3BelowEvent.instance());
             }
-            
-     
-            
-            
-            
-            
-            System.out.println(timeValue);
+           System.out.println(timeValue);
            
     }
 }
