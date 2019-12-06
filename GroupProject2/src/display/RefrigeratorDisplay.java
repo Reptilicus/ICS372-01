@@ -55,6 +55,17 @@ public interface RefrigeratorDisplay {
      */
     public void showFridgeTemp(int temp);
     
+    /**
+     * take in user values for desired temp
+     * @return an int for the desired temp
+     */
+    public int getDesiredField();
+    
+    /**
+     * take in user values for outside temp
+     * @return an int for the outside temp
+     */
+    public int getOutsideField();
    
 
 }
