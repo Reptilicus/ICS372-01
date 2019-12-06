@@ -12,8 +12,7 @@ import timer.Timer;
  */
 public class OnCoolingState extends RefrigeratorState implements Notifiable {
     private static OnCoolingState instance;
-    
-    //is this nessasary????? COME BACK TO THE CODE AND DECIDE IF THIS IS NESSESARY
+  
     private Timer timer;
     
     /**
@@ -120,8 +119,7 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 
     @Override
     public void leave() {
-    	
-    	//THIS BLOCK MAY NOT BE NESSASARY LOOK AT THE POTENTIAL TO REMOVE.
+    
     	timer.stop();
     	timer = null;
     }
