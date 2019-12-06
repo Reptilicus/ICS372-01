@@ -13,7 +13,6 @@ public class RefrigeratorContext {
     private RefrigeratorDisplay display;
     private RefrigeratorState currentState;
     private static RefrigeratorContext instance;
-    
     private Thermometer thermometer = new Thermometer(70, 70);
     private int desiredTemp = 30;
     
