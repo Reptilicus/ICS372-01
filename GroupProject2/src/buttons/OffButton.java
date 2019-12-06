@@ -7,9 +7,6 @@ import states.RefrigeratorContext;
 
 /**
  * The button to turn the fridge off
- * 
- * @author Brahma Dathan 
- * 
  *
  */
 public class OffButton extends GUIButton implements EventHandler<ActionEvent> {

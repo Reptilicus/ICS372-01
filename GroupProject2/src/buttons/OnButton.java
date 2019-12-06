@@ -7,9 +7,6 @@ import states.RefrigeratorContext;
 
 /**
  * The on button
- * 
- * @author Brahma Dathan
- * 
  *
  */
 public class OnButton extends GUIButton implements EventHandler<ActionEvent> {

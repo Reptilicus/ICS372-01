@@ -13,8 +13,7 @@ public class RefrigeratorContext {
     private RefrigeratorDisplay display;
     private RefrigeratorState currentState;
     private static RefrigeratorContext instance;
-    private Thermometer thermometer = new Thermometer(70, 70);
-    private int desiredTemp = 30;
+    private Thermometer thermometer = new Thermometer(30, 70, 70);
     
     /**
      * Make it a singleton
@@ -50,8 +49,25 @@ public class RefrigeratorContext {
      * @param temp number of degrees to be set 
      */
     public void setDesiredTemp(int temp) {
-    	this.desiredTemp = temp;
+    	thermometer.setDesiredTemp(temp);
     }
+    
+    /**\
+     * setter for the desired temp outside the fridge
+     * @param temp number of degrees to be set 
+     */
+    public void setOutsideTemp(int temp) {
+    	thermometer.setOutsideTemp(temp);
+    }
+    
+    /**\
+     * setter for the desired temp inside the fridge
+     * @param temp number of degrees to be set 
+     */
+    public void setFridgeTemp(int temp) {
+    	thermometer.setFridgeTemp(temp);
+    }
+    
     /**
      * Lets the off(door closed) state be the starting state adds the object as an
      * observable for clock
@@ -60,28 +76,23 @@ public class RefrigeratorContext {
         instance.changeState(OffState.instance());
     }
 
-    //??may be refactored or deleted
     public int getFridgeTemp() {
     	return thermometer.getFridgeTemp();
     }
     
-    ///??may be refactored or deleted
     public int getOutsideTemp() {
     	return thermometer.getOutsideTemp();
     }
     
-    ///??may be refactored or deleted
     public int getDesiredTemp() {
-    	return desiredTemp;
+    	return thermometer.getdesiredTemp();
     }
     
-    ///??may be refactored or deleted
     public void decrementFridgeTemp() {
     	thermometer.decrementFridgeTemp();
     	display.showFridgeTemp(getFridgeTemp());
     }
     
-    ///??may be refactored or deleted
     public void incrementFridgeTemp() {
     	thermometer.incrementFridgeTemp();
     	display.showFridgeTemp(getFridgeTemp());
@@ -130,16 +141,15 @@ public class RefrigeratorContext {
      * Process desired temp set event
      */
     public void handleEvent(DesiredTempSetEvent event) {
-    	//to do
-        //currentState.handleEvent(event);
+    	setDesiredTemp(display.getDesiredField());
     }
     
     /**
      * Process outside temp set event
      */
     public void handleEvent(OutsideTempSetEvent event) {
-    	//to do
-       // currentState.handleEvent(event);
+    	setOutsideTemp(display.getOutsideField());
+    	display.showOutsideTemp(getOutsideTemp());
     }
     
     /**

@@ -63,6 +63,22 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
     	RefrigeratorContext.instance().changeState(OnNotCoolingState.instance());
     }
 
+    
+    /**
+     * Process the temp3 above event
+     */
+    @Override
+    public void handleEvent(Temp3AboveEvent event) {
+    	RefrigeratorContext.instance().changeState(OnCoolingOpenState.instance());
+    }
+    
+    /**
+     * process the temp3 below event
+     */
+    @Override
+    public void handleEvent(Temp3BelowEvent event) {
+    	
+    }
     /**
      * Process clock tick event, because the refridgerator's door is open and it is not 
      * cooling this means that the fridge temp will rise faster every second, in our case
@@ -72,9 +88,15 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
     public void handleEvent(TimerTickedEvent event) {
     	
     	//increase the fridgetemp by 3 degrees every second.
-    	RefrigeratorContext.instance().incrementFridgeTemp();
-    	RefrigeratorContext.instance().incrementFridgeTemp();
-    	RefrigeratorContext.instance().incrementFridgeTemp();
+    	if (RefrigeratorContext.instance().getOutsideTemp() > RefrigeratorContext.instance().getFridgeTemp()){
+	    	RefrigeratorContext.instance().incrementFridgeTemp();
+	    	RefrigeratorContext.instance().incrementFridgeTemp();
+	    	RefrigeratorContext.instance().incrementFridgeTemp();
+    	}
+    	if (RefrigeratorContext.instance().getOutsideTemp() < RefrigeratorContext.instance().getFridgeTemp()) {
+    		RefrigeratorContext.instance().decrementFridgeTemp();
+    		RefrigeratorContext.instance().decrementFridgeTemp();
+    	}
     }
 
     /**

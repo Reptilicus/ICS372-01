@@ -8,32 +8,13 @@ import buttons.OffButton;
 import buttons.OnButton;
 import buttons.OutsideTempSetButton;
 
-/**
- * 
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
- 
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.  
- */
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import states.RefrigeratorContext;
@@ -46,8 +27,8 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	private GUIButton doorOpener;
 	private GUIButton onButton;
 	private GUIButton offButton;
-	private GUIButton desiredTempSet;
 	private GUIButton outsideTempSet;
+	private GUIButton desiredTempSet;
 
 	private Text doorStatus = new Text("Door Closed");
 	private Text coolingStatus = new Text("Not cooling");
@@ -55,6 +36,9 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	private Text lightStatus = new Text("Light Off");
 	private Text powerStatus = new Text("Fridge Off");
 	private Text fridgeTemp = new Text("Fridge Temp");
+	private TextField outsideTempField = new TextField();
+	private TextField desiredTempField = new TextField();
+	
 	private static RefrigeratorDisplay display;
 	private RefrigeratorContext refrigeratorContext;
 
@@ -74,8 +58,8 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 		doorOpener = new DoorOpenButton("Open door");
 		onButton = new OnButton("On");
 		offButton = new OffButton("Off");
-		desiredTempSet = new DesiredTempSetButton("Set Desired Fridge Temp");
 		outsideTempSet = new OutsideTempSetButton("Set Outside Temp");
+		desiredTempSet = new DesiredTempSetButton("Set Desired Fridge Temp");
 
 		GridPane pane = new GridPane();
 		pane.setHgap(10);
@@ -91,7 +75,9 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 		pane.add(doorOpener, 2, 2);
 		pane.add(onButton, 4, 2);
 		pane.add(offButton, 6, 2);
-		pane.add(outsideTempSet, 2, 3);
+		pane.add(outsideTempField, 1, 3);
+		pane.add(outsideTempSet, 2, 3);		
+		pane.add(desiredTempField, 4, 3);
 		pane.add(desiredTempSet, 6, 3);
 
 		showDoorClosed();
@@ -200,6 +186,24 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	@Override
 	public void showNotCooling() {
 		coolingStatus.setText("Not cooling");
+	}
+	
+	/**
+	 * Takes in string from user and 
+	 * @return int representing desired temp
+	 */
+	public int getDesiredField() {
+		String desiredTemp = desiredTempField.getText();
+		return Integer.parseInt(desiredTemp);
+	}
+	
+	/**
+	 * Takes in string from user and 
+	 * @return int representing outside temp
+	 */
+	public int getOutsideField() {
+		String outsideTemp = outsideTempField.getText();
+		return Integer.parseInt(outsideTemp);
 	}
 
 }

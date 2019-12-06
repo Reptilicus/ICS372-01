@@ -1,39 +1,11 @@
 package timer;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-import events.TimerTickedEvent;
-
 /**
- *
- * @author Brahma Dathan and Sarnath Ramnath
- * @Copyright (c) 2010
-
- * Redistribution and use with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - the use is for academic purpose only
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *   - Neither the name of Brahma Dathan or Sarnath Ramnath
- *     may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * The authors do not make any claims regarding the correctness of the code in this module
- * and are not responsible for any loss or damage resulting from its use.
- */
-
-/**
- * The timer allows a certain time period to be set when created. It sends
- * signals back to its creator every second and a timer runs out message when
- * the time period has elapsed.
- *
- * @author Brahma Dathan
- *
+ * The thermometer class stores the different temperatures that are 
+ * relevant to the refrigerator's operation
  */
 public class Thermometer {
+	private int desiredTemp;
     private int fridgeTemp;
     private int outsideTemp;
 
@@ -45,11 +17,20 @@ public class Thermometer {
      * @param timeValue
      *            the initial time value after which the timer runs out of time.
      */
-    public Thermometer( int fridgeTemp, int outsideTemp) {
+    public Thermometer(int desiredTemp, int fridgeTemp, int outsideTemp) {
+    	this.desiredTemp = desiredTemp;
         this.fridgeTemp = fridgeTemp;       
         this.outsideTemp = outsideTemp;
     }
 
+    /**
+     * Returns the fridge's target temp
+     *
+     * @return the temp
+     */
+    public int getdesiredTemp() {
+        return desiredTemp;
+    }
 
     /**
      * Returns the temp in the fridge
@@ -59,6 +40,7 @@ public class Thermometer {
     public int getFridgeTemp() {
         return fridgeTemp;
     }
+    
 
     /**
      * Returns the temp outside the fridge
@@ -70,6 +52,30 @@ public class Thermometer {
     }
     
     /**
+     * Set the fridge's target temp
+     * 
+     */
+    public void setDesiredTemp(int temp) {
+    	desiredTemp = temp;
+    }
+    
+    
+    /**
+     * Set the frige temp
+     */
+    public void setFridgeTemp(int temp) {
+    	fridgeTemp = temp;
+    }
+    
+    /**
+     * Set the outside temp
+     */
+    public void setOutsideTemp(int temp) {
+    	outsideTemp = temp;
+    }
+    
+    /**
+     * 
      * raise the temp in the fridge by 1 degree
      */
     public void incrementFridgeTemp() {

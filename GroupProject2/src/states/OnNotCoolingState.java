@@ -62,7 +62,20 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
     public void handleEvent(DoorCloseEvent event) {
     	
     }
-
+    
+    /**
+     * Process the temp3 above event
+     */
+    public void handleEvent(Temp3AboveEvent event) {
+    	RefrigeratorContext.instance().changeState(OnCoolingState.instance());
+    }
+    
+    /**
+     * process the temp3 below event
+     */
+    public void handleEvent(Temp3BelowEvent event) {
+    	
+    }
     /**
      * Process clock tick event, while the refridgerator is not on the temp will increase
      * by 1 degree every second.
@@ -71,7 +84,12 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
     public void handleEvent(TimerTickedEvent event) {
     	
     	//increase the fridge temp by 1 degree every second
-    	RefrigeratorContext.instance().incrementFridgeTemp();
+    	if (RefrigeratorContext.instance().getOutsideTemp() > RefrigeratorContext.instance().getFridgeTemp()){
+	    	RefrigeratorContext.instance().incrementFridgeTemp();
+    	}
+    	if (RefrigeratorContext.instance().getOutsideTemp() < RefrigeratorContext.instance().getFridgeTemp()) {
+    		RefrigeratorContext.instance().decrementFridgeTemp();
+    	}
     }
 
     /**
