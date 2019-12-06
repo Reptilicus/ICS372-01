@@ -29,4 +29,4 @@ public class Main {
         RefrigeratorDisplay display = GUIDisplay.getInstance();
         RefrigeratorContext.instance().setDisplay(display);
     } 
-}
+} //enter a change here then save
