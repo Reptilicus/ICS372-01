@@ -19,6 +19,10 @@ public class OffButton extends GUIButton implements EventHandler<ActionEvent> {
         super(string);
     }
 
+    /**
+     * Handles the off request whenever the button is pressed by informing refridgerator
+     * context about the event
+     */
     @Override
     public void handle(ActionEvent event) {
         RefrigeratorContext.instance().handleEvent(OffRequestEvent.instance());

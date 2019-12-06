@@ -7,7 +7,9 @@ import states.RefrigeratorContext;
 import timer.Clock;
 
 /**
- * moving our Main to the application folder
+ * Main method starts the interactions between all our classes,
+ * thats by creating new Clock instances and a new thread. Application is 
+ * then run.
  * @author armando
  *
  */
@@ -29,4 +31,4 @@ public class Main {
         RefrigeratorDisplay display = GUIDisplay.getInstance();
         RefrigeratorContext.instance().setDisplay(display);
     } 
-} //enter a change here then save
+}

@@ -14,13 +14,16 @@ public class DoorCloseButton extends GUIButton implements EventHandler<ActionEve
      * Creates the button with the required label
      * 
      * @param string
-     *            the label
+     *            the label for the button
      */
 
     public DoorCloseButton(String string) {
         super(string);
     }
 
+    /**
+     * Handles the DoorCloseEvent by telling the refridgerator that the button has been pressed
+     */
     @Override
     public void handle(ActionEvent event) {
         RefrigeratorContext.instance().handleEvent(DoorCloseEvent.instance());

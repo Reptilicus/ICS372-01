@@ -14,12 +14,17 @@ public class DesiredTempSetButton extends GUIButton implements EventHandler<Acti
      * Create the button with the proper display
      * 
      * @param string
-     *            the text to be put
+     *            the text to be put on the button
      */
     public DesiredTempSetButton(String string) {
         super(string);
     }
-
+    
+    
+    /**
+     * triggered when the desired temp text box is set to another value and by 
+     * telling the refridgerator about this event
+     */
     @Override
     public void handle(ActionEvent event) {
         RefrigeratorContext.instance().handleEvent(DesiredTempSetEvent.instance());

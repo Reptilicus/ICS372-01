@@ -14,12 +14,16 @@ public class OutsideTempSetButton extends GUIButton implements EventHandler<Acti
      * Create the button with the proper display
      * 
      * @param string
-     *            the text to be put
+     *            the text to be put on the button
      */
     public OutsideTempSetButton(String string) {
         super(string);
     }
 
+    /**
+     * Handles the outsideTempSetEvent whenever the button is pressed by informing refridgerator
+     * context about the event
+     */
     @Override
     public void handle(ActionEvent event) {
         RefrigeratorContext.instance().handleEvent(OutsideTempSetEvent.instance());

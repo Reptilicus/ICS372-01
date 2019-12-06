@@ -14,12 +14,17 @@ public class DoorOpenButton extends GUIButton implements EventHandler<ActionEven
      * Create the button with the proper display
      * 
      * @param string
-     *            the text to be put
+     *            the text to be put on the button
      */
     public DoorOpenButton(String string) {
         super(string);
     }
+    
 
+    /**
+     * Handles a door open request whenever this button is pressed, by informing
+     * the refridgerator context that this event has occured
+     */
     @Override
     public void handle(ActionEvent event) {
         RefrigeratorContext.instance().handleEvent(DoorOpenEvent.instance());
