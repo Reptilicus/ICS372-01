@@ -11,8 +11,8 @@ import timer.Notifiable;
 import timer.Timer;
 
 /**
- * The state where the Fridge is on, the cooler is on, and the door is open.
- * fridge does not cool as efficiently in this state.
+ * The state where the refrigerator is on, the cooler is on, and the door is
+ * open. refrigerator does not cool as efficiently in this state.
  *
  */
 public class OnCoolingOpenState extends RefrigeratorState implements Notifiable {
@@ -57,7 +57,7 @@ public class OnCoolingOpenState extends RefrigeratorState implements Notifiable 
 	}
 
 	/**
-	 * Process door open request, this does nothing as the door is alreay open
+	 * Process door open request, this does nothing as the door is already open
 	 */
 	@Override
 	public void handleEvent(DoorOpenEvent event) {
@@ -80,12 +80,11 @@ public class OnCoolingOpenState extends RefrigeratorState implements Notifiable 
 	@Override
 	public void handleEvent(TimerTickedEvent event) {
 
-		// decrement the fridge temp value since the door is open
 		RefrigeratorContext.instance().decrementFridgeTemp(3 + RefrigeratorContext.instance().environmentEffect(2));
 	}
 
 	/**
-	 * process the 3 degreess above event, this does nothing as the refridgerator is
+	 * process the 3 degrees above event, this does nothing as the refrigerator is
 	 * cooling in this state.
 	 */
 	@Override
@@ -116,8 +115,6 @@ public class OnCoolingOpenState extends RefrigeratorState implements Notifiable 
 
 	@Override
 	public void leave() {
-
-		// THIS MAY BE UNNESSARY AND WE MIGHT NEED TO LOOK INTO DELETING
 		timer.stop();
 		timer = null;
 	}

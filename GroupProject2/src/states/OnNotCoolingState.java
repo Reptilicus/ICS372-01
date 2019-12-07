@@ -11,8 +11,8 @@ import timer.Notifiable;
 import timer.Timer;
 
 /**
- * The State where the fridge is on and not cooling. The fridge temp approaches
- * the outside temp by one degree per second in this state
+ * The State where the refrigerator is on and not cooling. The refrigerator
+ * temperature approaches the outside temperature.
  * 
  */
 public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
@@ -38,7 +38,7 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Process On button request, Does nothing as the refridgerator is already on
+	 * Process On button request, Does nothing as the refrigerator is already on
 	 */
 	@Override
 	public void handleEvent(OnRequestEvent event) {
@@ -46,7 +46,7 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Process Off button request, changes thes state to OffState
+	 * Process Off button request, changes the state to OffState
 	 */
 	@Override
 	public void handleEvent(OffRequestEvent event) {
@@ -70,33 +70,35 @@ public class OnNotCoolingState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Process the temp3 above event
+	 * Process the event where the internal temperature is 3 degrees higher than the
+	 * desired temperature.
 	 */
 	public void handleEvent(Temp3AboveEvent event) {
 		RefrigeratorContext.instance().changeState(OnCoolingState.instance());
 	}
 
 	/**
-	 * process the temp3 below event
+	 * Process the event where the internal temperature is 3 degrees lower than the
+	 * desired temperature.
 	 */
 	public void handleEvent(Temp3BelowEvent event) {
 
 	}
 
 	/**
-	 * Process clock tick event, while the refridgerator is not on the temp will
-	 * increase by 1 degree every second.
+	 * Process clock tick event, while the refrigerator is not on, the temperature
+	 * will approach the outdoor temperature.
 	 */
 	@Override
 	public void handleEvent(TimerTickedEvent event) {
 
-		// increase the fridge temp by 1 degree every second
+		// Change the temperature according to the outside temperature
 		RefrigeratorContext.instance().decrementFridgeTemp(RefrigeratorContext.instance().environmentEffect(1));
 	}
 
 	/**
-	 * Initializes the state Adds itself as a listener to managers Updates the
-	 * displays
+	 * Initializes the state and adds itself as a listener to managers. Also updates
+	 * the displays
 	 * 
 	 */
 	@Override

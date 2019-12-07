@@ -11,8 +11,9 @@ import timer.Notifiable;
 import timer.Timer;
 
 /**
- * The State where the fridge is not cooling and the door is open. The fridge
- * temp appoaches the outside temp by two degrees per second in this state
+ * The State where the refrigerator is not cooling and the door is open. The
+ * refrigerator temperature approaches the outside temperature by two degrees
+ * per second in this state
  * 
  */
 public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiable {
@@ -38,7 +39,7 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
 	}
 
 	/**
-	 * Process On button request, This does nothing because the refridgerator is
+	 * Process On button request, This does nothing because the refrigerator is
 	 * already on
 	 */
 	@Override
@@ -71,7 +72,8 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
 	}
 
 	/**
-	 * Process the temp3 above event
+	 * Process the event where the internal temperature is 3 degrees higher than the
+	 * desired temperature.
 	 */
 	@Override
 	public void handleEvent(Temp3AboveEvent event) {
@@ -79,7 +81,8 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
 	}
 
 	/**
-	 * process the temp3 below event
+	 * Process the event where the internal temperature is 3 degrees lower than the
+	 * desired temperature.
 	 */
 	@Override
 	public void handleEvent(Temp3BelowEvent event) {
@@ -88,13 +91,12 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
 
 	/**
 	 * Process clock tick event, because the refridgerator's door is open and it is
-	 * not cooling this means that the fridge temp will rise faster every second, in
-	 * our case we are increasing the fridge temp every second
+	 * not cooling this means that the refrigerator temperature will be more
+	 * susceptible to the outside temperature
 	 */
 	@Override
 	public void handleEvent(TimerTickedEvent event) {
 
-		// increase the fridgetemp by 3 degrees every second.
 		RefrigeratorContext.instance().decrementFridgeTemp(RefrigeratorContext.instance().environmentEffect(2));
 	}
 
@@ -117,9 +119,6 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
 
 	@Override
 	public void leave() {
-
-		// CHECK TO SEE IF THIS IS EVEN NESSASARY, MAY NEED TO DELETE IF ITS UNUSED CODE
-		// TO AVOID LOSING POINTS
 		timer.stop();
 		timer = null;
 	}

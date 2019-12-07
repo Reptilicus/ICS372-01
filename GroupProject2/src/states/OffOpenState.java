@@ -1,10 +1,16 @@
 package states;
 
-import events.*;
+import events.DoorCloseEvent;
+import events.DoorOpenEvent;
+import events.OffRequestEvent;
+import events.OnRequestEvent;
+import events.Temp3AboveEvent;
+import events.Temp3BelowEvent;
+import events.TimerTickedEvent;
 import timer.Notifiable;
 
 /**
- * The state where the Fridge is off and the door is open.
+ * The state where the refrigerator is off and the door is open.
  *
  */
 public class OffOpenState extends RefrigeratorState implements Notifiable {
@@ -45,12 +51,11 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Process door open request, this does nothing as the refrigerator's door is
+	 * Process door open request, this does nothing as the refrigerator door is
 	 * already open
 	 */
 	@Override
 	public void handleEvent(DoorOpenEvent event) {
-		System.out.println("This event does not trigger any changes");
 	}
 
 	/**
@@ -66,12 +71,10 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
 	 */
 	@Override
 	public void handleEvent(TimerTickedEvent event) {
-		System.out.println("This event does not trigger any changes");
-
 	}
 
 	/**
-	 * process the 3 degreess above event, This does nothing as the refrigerator is
+	 * process the 3 degrees above event, This does nothing as the refrigerator is
 	 * off
 	 */
 	@Override
@@ -105,11 +108,7 @@ public class OffOpenState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Handles any clean up needed for this state, This method may not be needed in
-	 * our implementation may look into deleting, as none of the states need to do
-	 * any cleanup.
-	 * 
-	 * THIS METHOD MAY NEED TO BE DELETED AS IT APPEARS TO DO NOTHING
+	 * Handles any cleanup needed for this state.
 	 */
 	@Override
 	public void leave() {

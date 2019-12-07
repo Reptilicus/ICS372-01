@@ -11,8 +11,8 @@ import timer.Notifiable;
 import timer.Timer;
 
 /**
- * The state where the fridge is on and cooling. This is the state that it is in
- * when the refrigerator is first turned on (the on button is pressed)
+ * The state where the refrigerator is on and cooling. This is the state that it
+ * is in when the refrigerator is first turned on (the on button is pressed)
  *
  */
 public class OnCoolingState extends RefrigeratorState implements Notifiable {
@@ -28,7 +28,7 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * For singleton, retrives the only instance of this object
+	 * For singleton, retrieves the only instance of this object
 	 * 
 	 * @return the object
 	 */
@@ -64,7 +64,7 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Process door close request, Does nothing door is already closed
+	 * Process door close request, Does nothing because the door is already closed
 	 */
 	@Override
 	public void handleEvent(DoorCloseEvent event) {
@@ -72,8 +72,8 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Process clock tick event, decreases the temperature by 3 degrees each second,
-	 * this is the "normal" cooling for the refrigerator
+	 * Process clock tick event, decreases the temperature by at least 1 degree per
+	 * second
 	 */
 	@Override
 	public void handleEvent(TimerTickedEvent event) {
@@ -82,16 +82,13 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 
 	}
 
-	/**
-	 * process the 3 degrees above event, does nothing as it is cooling
-	 */
 	@Override
 	public void handleEvent(Temp3AboveEvent event) {
 
 	}
 
 	/**
-	 * process the 3 degrees below event, changes the state to OnNotCooling
+	 * Changes the state to OnNotCooling
 	 */
 	@Override
 	public void handleEvent(Temp3BelowEvent event) {
