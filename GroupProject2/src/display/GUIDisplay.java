@@ -75,7 +75,7 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 		pane.add(doorOpener, 2, 2);
 		pane.add(onButton, 4, 2);
 		pane.add(offButton, 6, 2);
-		pane.add(outsideTempField, 1, 3);
+		pane.add(outsideTempField, 0, 3);
 		pane.add(outsideTempSet, 2, 3);		
 		pane.add(desiredTempField, 4, 3);
 		pane.add(desiredTempSet, 6, 3);
