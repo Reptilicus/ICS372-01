@@ -95,12 +95,7 @@ public class OnNotCoolingOpenState extends RefrigeratorState implements Notifiab
 	public void handleEvent(TimerTickedEvent event) {
 
 		// increase the fridgetemp by 3 degrees every second.
-		if (RefrigeratorContext.instance().getOutsideTemp() > RefrigeratorContext.instance().getFridgeTemp()) {
-			RefrigeratorContext.instance().incrementFridgeTemp(3);
-		}
-		if (RefrigeratorContext.instance().getOutsideTemp() < RefrigeratorContext.instance().getFridgeTemp()) {
-			RefrigeratorContext.instance().decrementFridgeTemp(2);
-		}
+		RefrigeratorContext.instance().decrementFridgeTemp(RefrigeratorContext.instance().environmentEffect(2));
 	}
 
 	/**

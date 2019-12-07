@@ -21,6 +21,7 @@ public class RefrigeratorContext {
 	private RefrigeratorState currentState;
 	private static RefrigeratorContext instance;
 	private Thermometer thermometer = new Thermometer(30, 70, 70);
+	private final static int TEMPERATURE_DIFFERENCE_CONVERSION = 5;
 
 	/**
 	 * Make it a singleton
@@ -115,6 +116,25 @@ public class RefrigeratorContext {
 	public void incrementFridgeTemp(int numberOfDegrees) {
 		thermometer.incrementFridgeTemp(numberOfDegrees);
 		display.showFridgeTemp(getFridgeTemp());
+	}
+
+	/**
+	 * Returns an integer between negative sensitivityMultiplier and positive
+	 * sensitivityMultiplier, depending on the different in inside and outside
+	 * temperatures. The result is positive if the outside temperature is colder
+	 * than the inside temperature, and negative if the outside temperature is
+	 * hotter than the inside temperature.
+	 * 
+	 * @param sensitivityMultiplier
+	 * @return
+	 */
+	public int environmentEffect(int sensitivityMultiplier) {
+		int environmentEffect = (getFridgeTemp() - getOutsideTemp()) / TEMPERATURE_DIFFERENCE_CONVERSION;
+
+		if (environmentEffect > sensitivityMultiplier || environmentEffect < -sensitivityMultiplier) {
+			environmentEffect = (Math.abs(environmentEffect) / environmentEffect) * sensitivityMultiplier;
+		}
+		return environmentEffect;
 	}
 
 	/**

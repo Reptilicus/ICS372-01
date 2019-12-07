@@ -72,19 +72,18 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 	}
 
 	/**
-	 * Process clock tick event, decreases the temp by 3 degress each second, this
-	 * is the "normal" cooling for the refridgerator
+	 * Process clock tick event, decreases the temperature by 3 degrees each second,
+	 * this is the "normal" cooling for the refrigerator
 	 */
 	@Override
 	public void handleEvent(TimerTickedEvent event) {
 
-		// decrement the temp by 3 degrees every second
-		RefrigeratorContext.instance().decrementFridgeTemp(3);
+		RefrigeratorContext.instance().decrementFridgeTemp(3 + RefrigeratorContext.instance().environmentEffect(1));
 
 	}
 
 	/**
-	 * process the 3 degreess above event, does nothing as it is cooling
+	 * process the 3 degrees above event, does nothing as it is cooling
 	 */
 	@Override
 	public void handleEvent(Temp3AboveEvent event) {
