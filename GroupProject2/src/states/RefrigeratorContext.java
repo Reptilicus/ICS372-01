@@ -54,7 +54,7 @@ public class RefrigeratorContext {
 	}
 
 	/**
-	 * \ setter for the desired temp inside the fridge
+	 * Setter for the desired temperature inside the refrigerator
 	 * 
 	 * @param temp number of degrees to be set
 	 */
@@ -63,7 +63,7 @@ public class RefrigeratorContext {
 	}
 
 	/**
-	 * \ setter for the desired temp outside the fridge
+	 * Setter for the outside temperature
 	 * 
 	 * @param temp number of degrees to be set
 	 */
@@ -72,7 +72,7 @@ public class RefrigeratorContext {
 	}
 
 	/**
-	 * \ setter for the desired temp inside the fridge
+	 * Setter for the internal temperature inside the refrigerator
 	 * 
 	 * @param temp number of degrees to be set
 	 */
@@ -81,38 +81,71 @@ public class RefrigeratorContext {
 	}
 
 	/**
-	 * Lets the off(door closed) state be the starting state adds the object as an
-	 * observable for clock
+	 * Lets the off(door closed) state be the starting state and adds the object as
+	 * an observable for clock
 	 */
 	public void initialize() {
 		instance.changeState(OffState.instance());
 	}
 
+	/**
+	 * Gets the current refrigerator temperature.
+	 * 
+	 * @return the current internal refrigerator temperature.
+	 */
 	public int getFridgeTemp() {
 		return thermometer.getFridgeTemp();
 	}
 
+	/**
+	 * Gets the outside temperature.
+	 * 
+	 * @return the outside temperature.
+	 */
 	public int getOutsideTemp() {
 		return thermometer.getOutsideTemp();
 	}
 
+	/**
+	 * Gets the desired refrigerator temperature.
+	 * 
+	 * @return the desired refrigerator temperature.
+	 */
 	public int getDesiredTemp() {
 		return thermometer.getdesiredTemp();
 	}
 
+	/**
+	 * Decrements the refrigerator temperature by 1.
+	 */
 	public void decrementFridgeTemp() {
 		decrementFridgeTemp(1);
 	}
 
+	/**
+	 * Decrements the refrigerator temperature.
+	 * 
+	 * @param numberOfDegrees the number of degrees to decrement the refrigerator
+	 *                        temperature by.
+	 */
 	public void decrementFridgeTemp(int numberOfDegrees) {
 		thermometer.decrementFridgeTemp(numberOfDegrees);
 		display.showFridgeTemp(getFridgeTemp());
 	}
 
+	/**
+	 * Increments the refrigerator temperature
+	 */
 	public void incrementFridgeTemp() {
 		incrementFridgeTemp(1);
 	}
 
+	/**
+	 * Increment the refrigerator temperature.
+	 * 
+	 * @param numberOfDegrees the number of degrees to increment the refrigerator
+	 *                        temperature by.
+	 */
 	public void incrementFridgeTemp(int numberOfDegrees) {
 		thermometer.incrementFridgeTemp(numberOfDegrees);
 		display.showFridgeTemp(getFridgeTemp());
@@ -126,7 +159,8 @@ public class RefrigeratorContext {
 	 * hotter than the inside temperature.
 	 * 
 	 * @param sensitivityMultiplier
-	 * @return
+	 * @return An integer value between negative sensitivityMultiplier and positive
+	 *         sensitivityMultiplier
 	 */
 	public int environmentEffect(int sensitivityMultiplier) {
 		int environmentEffect = (getFridgeTemp() - getOutsideTemp()) / TEMPERATURE_DIFFERENCE_CONVERSION;
@@ -149,14 +183,14 @@ public class RefrigeratorContext {
 	}
 
 	/**
-	 * process on button
+	 * Process on button
 	 */
 	public void handleEvent(OnRequestEvent event) {
 		currentState.handleEvent(event);
 	}
 
 	/**
-	 * process off button
+	 * Process off button
 	 */
 	public void handleEvent(OffRequestEvent event) {
 		currentState.handleEvent(event);
@@ -177,14 +211,14 @@ public class RefrigeratorContext {
 	}
 
 	/**
-	 * Process desired temp set event
+	 * Process desired temperature set event
 	 */
 	public void handleEvent(DesiredTempSetEvent event) {
 		setDesiredTemp(display.getDesiredField());
 	}
 
 	/**
-	 * Process outside temp set event
+	 * Process outside temperature set event
 	 */
 	public void handleEvent(OutsideTempSetEvent event) {
 		setOutsideTemp(display.getOutsideField());
@@ -192,14 +226,14 @@ public class RefrigeratorContext {
 	}
 
 	/**
-	 * process temp below 3 event
+	 * Process temperature below 3 event
 	 */
 	public void handleEvent(Temp3AboveEvent event) {
 		currentState.handleEvent(event);
 	}
 
 	/**
-	 * Process temp below 3 event
+	 * Process temperature below 3 event
 	 */
 	public void handleEvent(Temp3BelowEvent event) {
 		currentState.handleEvent(event);
@@ -227,7 +261,7 @@ public class RefrigeratorContext {
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
 	 * 
-	 * @param temp temp inside the fridgeS
+	 * @param temp The current temperature inside the refrigerator
 	 */
 	public void showFridgeTemp(int temp) {
 		display.showFridgeTemp(temp);
@@ -237,7 +271,7 @@ public class RefrigeratorContext {
 	 * This invokes the right method of the display. This helps protect the states
 	 * from changes to the way the system utilizes the state changes.
 	 * 
-	 * @param temp temperature outside the fridgeS
+	 * @param temp The temperature outside the refrigerator
 	 */
 	public void showOutsideTemp(int temp) {
 		display.showOutsideTemp(temp);
