@@ -20,8 +20,6 @@ public abstract class RefrigeratorState {
      * Performs any necessary clean up while leaving the state, this method may not be nessesary
      * looking into mabye deleting method as state transitions do not need cleanup
      * 
-     * 
-     * THIS MAY NOT BE NESSESARY
      */
     public abstract void leave();
 
@@ -34,12 +32,14 @@ public abstract class RefrigeratorState {
 
     /**
      * Specifies the actions to be taken when the Off button is pressed.
+     * @param event an event object of type OffRequestEvent
      */
     public void handleEvent(OffRequestEvent event) {
 
     }
     /**
      * Process door open request
+     * @param event an event object of type DoorOpenEvent
      */
     public void handleEvent(DoorOpenEvent event) {
 
@@ -47,6 +47,7 @@ public abstract class RefrigeratorState {
 
     /**
      * Process door close request
+     * @param event an event object of type DoorCloseEvent
      */
     public void handleEvent(DoorCloseEvent event) {
 
@@ -54,6 +55,7 @@ public abstract class RefrigeratorState {
 
     /**
      * Process clock tick Generates the timer runs out event
+     * @param event an event object of TimerTickerEvent
      */
     public void handleEvent(TimerTickedEvent event) {
 
@@ -61,6 +63,7 @@ public abstract class RefrigeratorState {
     
     /**
      * Process the event where the refigerator 
+     * @param event an event object of type Temp3AboveEvent
      */
     public void handleEvent(Temp3AboveEvent event) {
 
@@ -68,6 +71,7 @@ public abstract class RefrigeratorState {
     
     /**
      * Process the event where the refigerator 
+     * @param event an event object of type Temp3BelowEvent
      */
     public void handleEvent(Temp3BelowEvent event) {
 
