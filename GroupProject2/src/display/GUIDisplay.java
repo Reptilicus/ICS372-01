@@ -7,14 +7,13 @@ import buttons.GUIButton;
 import buttons.OffButton;
 import buttons.OnButton;
 import buttons.OutsideTempSetButton;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import states.RefrigeratorContext;
@@ -38,7 +37,7 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	private Text fridgeTemp = new Text("Fridge Temp");
 	private TextField outsideTempField = new TextField();
 	private TextField desiredTempField = new TextField();
-	
+
 	private static RefrigeratorDisplay display;
 	private RefrigeratorContext refrigeratorContext;
 
@@ -76,7 +75,7 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 		pane.add(onButton, 4, 2);
 		pane.add(offButton, 6, 2);
 		pane.add(outsideTempField, 0, 3);
-		pane.add(outsideTempSet, 2, 3);		
+		pane.add(outsideTempSet, 2, 3);
 		pane.add(desiredTempField, 4, 3);
 		pane.add(desiredTempSet, 6, 3);
 
@@ -105,7 +104,7 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	}
 
 	/**
-	 * Indicate that the fridge is on
+	 * Indicate that the refrigerator is on
 	 */
 	@Override
 	public void showPowerOn() {
@@ -113,7 +112,7 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	}
 
 	/**
-	 * Indicate that the fridge is off
+	 * Indicate that the refrigerator is off
 	 */
 	@Override
 	public void showPowerOff() {
@@ -153,9 +152,9 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	}
 
 	/**
-	 * display the outside temp
+	 * display the outside temperature
 	 * 
-	 * @param the temp
+	 * @param the temperature
 	 */
 	@Override
 	public void showOutsideTemp(int value) {
@@ -163,9 +162,9 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	}
 
 	/**
-	 * display the fridge temp
+	 * display the refrigerator temperature
 	 * 
-	 * @param the temp
+	 * @param the temperature
 	 */
 	@Override
 	public void showFridgeTemp(int value) {
@@ -173,7 +172,7 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	}
 
 	/**
-	 * Indicate that the fridge is cooling
+	 * Indicate that the refrigerator is cooling
 	 */
 	@Override
 	public void showCooling() {
@@ -181,25 +180,27 @@ public class GUIDisplay extends Application implements RefrigeratorDisplay {
 	}
 
 	/**
-	 * Indicate that the fridge is not cooling
+	 * Indicate that the refrigerator is not cooling
 	 */
 	@Override
 	public void showNotCooling() {
 		coolingStatus.setText("Not cooling");
 	}
-	
+
 	/**
-	 * Takes in string from user and 
-	 * @return int representing desired temp
+	 * Takes in string from user and
+	 * 
+	 * @return An integer representing desired temperature
 	 */
 	public int getDesiredField() {
 		String desiredTemp = desiredTempField.getText();
 		return Integer.parseInt(desiredTemp);
 	}
-	
+
 	/**
-	 * Takes in string from user and 
-	 * @return int representing outside temp
+	 * Takes in string from user and
+	 * 
+	 * @return An integer representing outside temperature
 	 */
 	public int getOutsideField() {
 		String outsideTemp = outsideTempField.getText();

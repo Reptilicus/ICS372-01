@@ -44,7 +44,6 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 	 */
 	@Override
 	public void handleEvent(OnRequestEvent event) {
-		System.out.println("This event does not trigger any changes");
 	}
 
 	/**
@@ -77,14 +76,11 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 	 */
 	@Override
 	public void handleEvent(TimerTickedEvent event) {
-
 		RefrigeratorContext.instance().decrementFridgeTemp(3 + RefrigeratorContext.instance().environmentEffect(1));
-
 	}
 
 	@Override
 	public void handleEvent(Temp3AboveEvent event) {
-
 	}
 
 	/**
@@ -116,7 +112,6 @@ public class OnCoolingState extends RefrigeratorState implements Notifiable {
 
 	@Override
 	public void leave() {
-
 		timer.stop();
 		timer = null;
 	}

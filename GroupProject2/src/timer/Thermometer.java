@@ -23,34 +23,34 @@ public class Thermometer {
 	}
 
 	/**
-	 * Returns the fridge's target temp
+	 * Returns the fridge's target temperature
 	 *
-	 * @return the temp
+	 * @return the temperature
 	 */
 	public int getdesiredTemp() {
 		return desiredTemp;
 	}
 
 	/**
-	 * Returns the temp in the fridge
+	 * Returns the temperature in the refrigerator
 	 *
-	 * @return the temp
+	 * @return the temperature
 	 */
 	public int getFridgeTemp() {
 		return fridgeTemp;
 	}
 
 	/**
-	 * Returns the temp outside the fridge
+	 * Returns the temperature outside the refrigerator
 	 *
-	 * @return the temp
+	 * @return the temperature
 	 */
 	public int getOutsideTemp() {
 		return outsideTemp;
 	}
 
 	/**
-	 * Set the fridge's target temp
+	 * Set the fridge's target temperature
 	 * 
 	 */
 	public void setDesiredTemp(int temp) {
@@ -58,14 +58,14 @@ public class Thermometer {
 	}
 
 	/**
-	 * Set the frige temp
+	 * Set the frige temperature
 	 */
 	public void setFridgeTemp(int temp) {
 		fridgeTemp = temp;
 	}
 
 	/**
-	 * Set the outside temp
+	 * Set the outside temperature
 	 */
 	public void setOutsideTemp(int temp) {
 		outsideTemp = temp;
@@ -73,14 +73,14 @@ public class Thermometer {
 
 	/**
 	 * 
-	 * raise the temp in the fridge by 1 degree
+	 * raise the temperature in the refrigerator by 1 degree
 	 */
 	public void incrementFridgeTemp() {
 		incrementFridgeTemp(1);
 	}
 
 	/**
-	 * decrease the temp in the fridge by 1 degree
+	 * decrease the temperature in the refrigerator by 1 degree
 	 */
 	public void decrementFridgeTemp() {
 		decrementFridgeTemp(1);
@@ -88,14 +88,14 @@ public class Thermometer {
 
 	/**
 	 * 
-	 * raise the temp in the fridge by 1 degree
+	 * raise the temperature in the refrigerator by 1 degree
 	 */
 	public void incrementFridgeTemp(int numberOfDegrees) {
 		fridgeTemp += numberOfDegrees;
 	}
 
 	/**
-	 * decrease the temp in the fridge by 1 degree
+	 * decrease the temperature in the refrigerator by 1 degree
 	 */
 	public void decrementFridgeTemp(int numberOfDegrees) {
 		fridgeTemp -= numberOfDegrees;
